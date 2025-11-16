@@ -23,14 +23,14 @@ const ListProducts_SP = () => {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px", width: "100%" }}>
       <h2>Danh sách sản phẩm</h2>
 
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: "25px",
         }}
       >
         {listProduct.map((p) => (
@@ -59,7 +59,7 @@ const ListProducts_SP = () => {
             <div
               style={{
                 width: "100%",
-                height: "200px",
+                height: "300px",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",

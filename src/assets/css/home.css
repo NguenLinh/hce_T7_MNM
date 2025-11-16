@@ -1,0 +1,49 @@
+.banner-background {
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+}
+
+.banner-text {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.banner-text h2 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.banner-text p {
+  font-size: 18px;
+  color: #444;
+  margin: 0;
+}
+
+.two-images {
+  display: flex;
+  justify-content: space-between; /* 2 ảnh dàn đều khoảng cách */
+  gap: 20px; /* khoảng cách giữa 2 ảnh */
+  padding: 40px 20px;
+  flex-wrap: wrap; /* responsive cho màn hình nhỏ */
+}
+
+.two-images img {
+  flex: 1 1 45%; /* mỗi ảnh chiếm ~45% container */
+  border-radius: 10px;
+  object-fit: cover;
+  min-width: 200px; /* để ảnh không quá nhỏ trên mobile */
+  max-width: 100%; /* không vượt quá container */
+}
+
+.product-list {
+  padding: 0 20px 50px;
+}
+
+.home-wrapper {
+  width: 100%;
+}

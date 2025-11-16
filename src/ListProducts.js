@@ -31,27 +31,27 @@ const ListProducts = () => {
   return (
     <div
       style={{
-        minHeight: "100vh", // Chiếm toàn bộ chiều cao màn hình
+        minHeight: "100vh",
         display: "flex",
-        justifyContent: "center", // Căn giữa ngang
-
-        backgroundColor: "#f9f9f9", // Tuỳ chọn
+        justifyContent: "center",
+        backgroundColor: "#f9f9f9",
         padding: "20px",
+        boxSizing: "border-box",
+        width: "100%",
       }}
     >
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
           gap: "16px",
-          maxWidth: "1000px", // Giới hạn chiều rộng
           width: "100%",
         }}
       >
         {listproduct.map((motsp) => (
           <div
-            onClick={() => navigate(`/sanpham/${motsp.id}`)}
             key={motsp.id}
+            onClick={() => navigate(`/sanpham/${motsp.id}`)}
             style={{
               height: "300px",
               border: "1px solid #ddd",
@@ -60,6 +60,9 @@ const ListProducts = () => {
               textAlign: "center",
               backgroundColor: "#fff",
               boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
             }}
           >
             <img
@@ -67,13 +70,14 @@ const ListProducts = () => {
               alt={motsp.title}
               style={{
                 height: "140px",
-
                 objectFit: "cover",
                 borderRadius: "6px",
               }}
             />
-            <h3 style={{ margin: "10px 0 5px" }}>{motsp.title}</h3>
-            <p>{motsp.price}</p>
+            <h3 style={{ margin: "10px 0 5px", fontSize: "16px" }}>
+              {motsp.title}
+            </h3>
+            <p style={{ margin: 0, fontWeight: "bold" }}>{motsp.price}</p>
           </div>
         ))}
       </div>

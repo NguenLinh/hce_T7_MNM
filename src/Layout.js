@@ -25,19 +25,6 @@ const Layout = () => {
       <header>
         <div id="divheader" class="header1">
           <div id="banner" class="banner1">
-            <div id="topleft">
-              <ul class="ul1">
-                <li>
-                  <a href="/#">TRANG CHỦ</a>
-                </li>
-                <li>
-                  <a href="/trang1">EGOV</a>
-                </li>
-                <li>
-                  <a href="/admin/products">QUẢN TRỊ</a>
-                </li>
-              </ul>
-            </div>
             <div id="logo" class="logo1">
               <img src={anhlogo} width="548" />
             </div>
@@ -47,11 +34,14 @@ const Layout = () => {
           </div>
           <div id="menubar" className="menubar">
             <div className="menubar-left">
-              <a href="/menu1" className="menu-item">
-                Menu 1
+              <a href="/admin/products" className="menu-item">
+                ADMIN
               </a>
-              <a href="/menu2" className="menu-item">
-                Menu 2
+              <a href="/" className="menu-item">
+                HOME
+              </a>
+              <a href="/trang1" className="menu-item">
+                PRODUCT
               </a>
               <a href="/menu3" className="menu-item">
                 Menu 3
@@ -63,12 +53,12 @@ const Layout = () => {
                 <>
                   <span className="username">👤 {user.username}</span>
                   <button className="logout-btn" onClick={handleLogout}>
-                    Đăng xuất
+                    LOGOUT
                   </button>
                 </>
               ) : (
                 <a href="/login" className="login-link">
-                  Đăng nhập
+                  LOGIN
                 </a>
               )}
             </div>

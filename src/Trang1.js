@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 const Trang1 = () => {
   const navigate = useNavigate();
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px", width: "100%" }}>
       <h2>Danh sách sản phẩm</h2>
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-          gap: "16px",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: "20px",
         }}
       >
         {products.map((p) => (
@@ -28,7 +28,7 @@ const Trang1 = () => {
             <img
               src={p.image}
               alt={p.title}
-              style={{ width: "100px", height: "100px", objectFit: "contain" }}
+              style={{ width: "100px", height: "250px", objectFit: "contain" }}
             />
             <h4>{p.title}</h4>
             <p>${p.price}</p>

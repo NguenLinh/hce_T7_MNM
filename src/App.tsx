@@ -42,7 +42,7 @@ export default function App() {
         {/* ✅ Layout chung cho toàn bộ hệ thống */}
         <Route path="/" element={<Layout />}>
           {/* Trang chính (cho người dùng vãng lai) */}
-          <Route index element={<ListProducts_SP />} />
+          <Route index element={<Home />} />
           <Route path="trang1" element={<Trang1 />} />
           <Route path="trang2" element={<Trang2 />} />
           <Route path="sanpham/:id" element={<Chitietsanpham />} />
