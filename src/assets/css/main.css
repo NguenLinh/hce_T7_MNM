@@ -1,34 +1,43 @@
+/* General Body Style */
 body {
   margin: 0;
 }
+
+/* Top Left Menu */
 #topleft ul {
   text-decoration: none;
   list-style: none;
   width: 350px;
   padding-top: 20px;
 }
+
 #topleft ul li {
   text-decoration: none;
   padding-left: 10px;
   padding-right: 10px;
 }
+
 #topleft ul li a {
   text-decoration: none;
   font-family: "Times New Roman", Times, serif;
-  color: blueviolet;
+  color: #cc8c57; /* Nâu cho liên kết */
 }
 
+/* Header Styling */
 .header1 {
-  height: 160px;
+  height: 170px;
   display: flex;
   flex-direction: column;
 }
 
 .banner1 {
-  height: 104px;
+  height: 150px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between; /* TRÁI – GIỮA – PHẢI */
+  background-color: #ecccab;
+  padding: 0 40px; /* tạo khoảng cách 2 bên */
 }
 
 .ul1 {
@@ -42,17 +51,22 @@ body {
   justify-content: center;
   display: flex;
 }
+
+/* Navigation Menu */
 .menu {
-  height: 56px;
-  background-color: #b22d30;
-}
-.logo1 {
-  width: 560px;
+  height: 60px;
+  background-color: #2c3e50; /* Xám đậm cho nền menu */
 }
 
-/**********************/
+.logo1 {
+  width: 560px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Menubar Styling */
 .menubar {
-  background-color: #b22d30;
+  background-color: #2c3e50; /* Xám đậm cho menu */
   height: 52px;
   display: flex;
   align-items: center;
@@ -61,7 +75,7 @@ body {
   box-sizing: border-box;
 }
 
-/* --- Menu bên trái --- */
+/* --- Left Menu --- */
 .menubar-left {
   display: flex;
   gap: 20px;
@@ -81,7 +95,7 @@ body {
   opacity: 0.9;
 }
 
-/* --- Phần bên phải (tên người dùng + đăng xuất) --- */
+/* --- Right Section (Username + Logout) --- */
 .menubar-right {
   display: flex;
   align-items: center;
@@ -96,7 +110,7 @@ body {
 
 .logout-btn {
   background-color: #fff;
-  color: #b22d30;
+  color: #2c3e50; /* Xám đậm cho nút logout */
   border: none;
   border-radius: 6px;
   padding: 5px 12px;
@@ -118,4 +132,121 @@ body {
 
 .login-link:hover {
   text-decoration: underline;
+}
+
+/* Footer Main Style */
+/* Footer tổng */
+.footer {
+  width: 100%;
+  background: #ecccab;
+  color: #000;
+  padding-top: 40px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Container 4 cột */
+.footer-container {
+  width: 100%;
+  max-width: 1200px; /* Đặt giới hạn để nội dung không quá rộng */
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* Mỗi cột */
+.footer-column {
+  width: 23%;
+  min-width: 200px;
+}
+
+/* Logo bo tròn */
+.footer-logo {
+  width: 130px;
+  height: 130px;
+  background: white;
+  border-radius: 50%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.footer-logo img {
+  width: 70px;
+}
+
+/* Link trong footer */
+.footer-column a {
+  display: block;
+  text-decoration: none;
+  color: #000;
+  margin: 6px 0;
+  transition: 0.2s;
+}
+
+.footer-column a:hover {
+  color: #8a5327; /* nâu đậm hơn */
+}
+
+/* Social icon */
+.footer-social {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  font-size: 22px;
+}
+
+.footer-social i {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-social i:hover {
+  color: #8a5327;
+}
+
+/* Copyright */
+.footer-copy {
+  text-align: center;
+  padding: 15px 0;
+  background-color: #2c3e50;
+  margin-top: 30px;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+}
+
+.banner-left {
+  width: 200px; /* bằng width search-box để logo cân bằng */
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-box input {
+  padding: 7px 12px;
+  font-size: 14px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.search-box button {
+  padding: 7px 12px;
+  background: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background: #1a242f;
 }
