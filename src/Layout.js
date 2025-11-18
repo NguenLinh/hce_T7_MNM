@@ -46,7 +46,7 @@ const Layout = () => {
               <a href="/trang1" className="menu-item">
                 PRODUCT
               </a>
-              <a href="/menu3" className="menu-item">
+              <a href="/contact" className="menu-item">
                 CONTACT
               </a>
             </div>
