@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import anhlogo1 from "./assets/images/keylogin.png";
 import "./assets/css/login.css";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -30,58 +30,64 @@ const LoginPage = () => {
 
   return (
     <div className="login-wrapper">
-      <div className="login-card">
-        <img src={anhlogo1} alt="Logo" className="login-logo" />
+      <div className="login-container">
+        {/* Left Image */}
+        <div className="login-image">
+          <img
+            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+            alt="Login"
+          />
+        </div>
 
-        <h2 className="login-title">Đăng nhập vào tài khoản</h2>
-        <p className="login-subtitle">Sử dụng tài khoản của bạn để tiếp tục</p>
+        {/* Right Form */}
+        <div className="login-form-container">
+          <h2>Đăng nhập</h2>
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <label>Tài khoản</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Nhập tài khoản"
+                required
+              />
+            </div>
 
-        <form onSubmit={handleLogin} className="login-form">
-          <div className="form-group">
-            <label>Tên đăng nhập</label>
-            <input
-              type="text"
-              placeholder="Nhập tên đăng nhập..."
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
+            <div className="form-group">
+              <label>Mật khẩu</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Nhập mật khẩu"
+                required
+              />
+            </div>
 
-          <div className="form-group">
-            <label>Mật khẩu</label>
-            <input
-              type="password"
-              placeholder="Nhập mật khẩu..."
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+            <div className="form-options">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={remember}
+                  onChange={(e) => setRemember(e.target.checked)}
+                />{" "}
+                Nhớ tôi
+              </label>
+              <a href="#">Quên mật khẩu?</a>
+            </div>
 
-          <button type="submit" disabled={loading}>
-            {loading ? "⏳ Đang xử lý..." : "Đăng nhập"}
-          </button>
-        </form>
+            <button type="submit" disabled={loading}>
+              {loading ? "⏳ Đang xử lý..." : "Đăng nhập"}
+            </button>
 
-        <p className="register-link">
-          Bạn chưa có tài khoản? <a href="#">Tạo tài khoản mới</a>
-        </p>
+            <div className="divider">HOẶC</div>
 
-        <div className="social-login">
-          <button className="social-btn google">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png"
-              alt="Google"
-            />
-            <span>Đăng nhập Google</span>
-          </button>
-
-          <button className="social-btn facebook">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-              alt="Facebook"
-            />
-            <span>Facebook</span>
-          </button>
+            <button className="social-btn facebook">
+              Tiếp tục với Facebook
+            </button>
+            <button className="social-btn google">Tiếp tục với Google</button>
+          </form>
         </div>
       </div>
     </div>
