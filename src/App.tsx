@@ -1,4 +1,5 @@
 import "./styles.css";
+
 // @ts-ignore
 import Home from "./Home";
 // @ts-ignore
@@ -7,16 +8,12 @@ import Layout from "./Layout";
 import Trang1 from "./Trang1";
 // @ts-ignore
 import Chitietsanpham from "./Chitietsanpham";
-
 // @ts-ignore
 import ProductDetail from "./ProductDetail";
-
 // @ts-ignore
 import ListProducts from "./ListProducts";
-
 // @ts-ignore
 import ListProducts_SP from "./ListProducts_SP";
-
 // @ts-ignore
 import Trang2 from "./Trang2";
 
@@ -33,40 +30,54 @@ import ListProducts_SP_Admin from "./ListProducts_SP_Admin";
 //@ts-ignore
 import EditProduct from "./EditProduct";
 
+// ⭐ GIỎ HÀNG
+import { CartProvider } from "./CartContext";
+// @ts-ignore
+import CartPage from "./CartPage";
+
+// ⭐ CHAT AI (nếu có)
+import ChatPage from "./ChatPage";
+
 export default function App() {
-  // return <Layout />;
-
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* ✅ Layout chung cho toàn bộ hệ thống */}
-        <Route path="/" element={<Layout />}>
-          {/* Trang chính (cho người dùng vãng lai) */}
-          <Route index element={<Home />} />
-          <Route path="trang1" element={<Trang1 />} />
-          <Route path="trang2" element={<Trang2 />} />
-          <Route path="sanpham/:id" element={<Chitietsanpham />} />
-          <Route path="/admin/edit/:id" element={<EditProduct />} />
+    // ⭐⭐⭐ BỌC TOÀN BỘ ỨNG DỤNG BẰNG CartProvider
+    <CartProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Layout dùng chung */}
+          <Route path="/" element={<Layout />}>
+            {/* ⭐ Trang Home */}
+            <Route index element={<Home />} />
 
-          {/* <Route path="detail/:id" element={<ProductDetail />} /> */}
+            <Route path="trang1" element={<Trang1 />} />
+            <Route path="trang2" element={<Trang2 />} />
 
-          {/* ✅ Trang đăng nhập (nằm trong Layout) */}
-          <Route path="login" element={<LoginPage />} />
+            {/* ⭐ Trang chi tiết */}
+            <Route path="sanpham/:id" element={<Chitietsanpham />} />
+            <Route path="/admin/edit/:id" element={<EditProduct />} />
 
-          {/* ✅ Trang đăng xuất */}
-          <Route path="logout" element={<LogoutPage />} />
+            {/* ⭐ GIỎ HÀNG */}
+            <Route path="cart" element={<CartPage />} />
 
-          {/* ✅ Trang quản trị (nằm trong Layout, chỉ Admin truy cập) */}
-          <Route
-            path="admin/products"
-            element={
-              <ProtectedRoute>
-                <ListProducts_SP_Admin />
-              </ProtectedRoute>
-            }
-          />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+            {/* ⭐ CHAT AI */}
+            <Route path="chat" element={<ChatPage />} />
+
+            {/* ⭐ Login / Logout */}
+            <Route path="login" element={<LoginPage />} />
+            <Route path="logout" element={<LogoutPage />} />
+
+            {/* ⭐ ADMIN */}
+            <Route
+              path="admin/products"
+              element={
+                <ProtectedRoute>
+                  <ListProducts_SP_Admin />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
