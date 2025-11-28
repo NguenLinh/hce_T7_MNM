@@ -1,5 +1,6 @@
 import "./assets/css/main.css";
 import anhlogo from "./assets/images/logo.png";
+import avatar from "./assets/images/ava.png";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -131,10 +132,12 @@ const Layout = () => {
           <div className="footer-column">
             <div className="footer-logo">
               <img
-                src="https://mdbootstrap.com/img/Photos/new-templates/animal-shelter/logo.png"
-                alt="logo"
+                src={avatar}
+                alt="Ava"
+                style={{ width: "100%", height: "auto", objectFit: "contain" }}
               />
             </div>
+
             <p>
               Fashion Store – Shop thời trang phong cách & chất lượng dành cho
               mọi lứa tuổi.
