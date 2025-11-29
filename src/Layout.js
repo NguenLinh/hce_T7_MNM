@@ -62,9 +62,6 @@ const Layout = () => {
               <a href="/trang1" className="menu-item">
                 PRODUCT
               </a>
-              <a href="/chat" className="menu-item">
-                CHAT AI
-              </a>
             </div>
 
             {/* ⭐⭐ GIỎ HÀNG ĐÃ ĐƯỢC THAY TỪ LAYOUT 1 ⭐⭐ */}
@@ -160,10 +157,10 @@ const Layout = () => {
 
           <div className="footer-column">
             <h3>Hỗ trợ khách hàng</h3>
-            <a href="#">Hướng dẫn mua hàng</a>
             <a href="#">Chính sách đổi trả</a>
             <a href="#">Chính sách giao hàng</a>
             <a href="#">Câu hỏi thường gặp</a>
+            <a href="/chat">Chat AI</a>
           </div>
 
           <div className="footer-column">

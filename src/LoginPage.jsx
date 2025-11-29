@@ -1,31 +1,41 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "./supabaseClient";
 import "./assets/css/login.css";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(""); // sẽ là email
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    setTimeout(() => {
-      if (username.trim() && password.trim()) {
-        localStorage.setItem(
-          "user",
-          JSON.stringify({ username, role: "user" })
-        );
-        alert("✅ Đăng nhập thành công!");
-        navigate("/");
-      } else {
-        alert("❌ Vui lòng nhập đầy đủ thông tin!");
-      }
+    // 🔐 Đăng nhập Supabase
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: username,
+      password: password,
+    });
+
+    if (error) {
+      alert("❌ Sai tài khoản hoặc mật khẩu!");
       setLoading(false);
-    }, 1000);
+      return;
+    }
+
+    // ⭐ Nếu nhớ tôi → lưu email
+    if (remember) {
+      localStorage.setItem("rememberEmail", username);
+    } else {
+      localStorage.removeItem("rememberEmail");
+    }
+
+    alert("✅ Đăng nhập thành công!");
+    setLoading(false);
+    navigate("/");
   };
 
   return (
@@ -44,12 +54,12 @@ const LoginPage = () => {
           <h2>Đăng nhập</h2>
           <form onSubmit={handleLogin}>
             <div className="form-group">
-              <label>Tài khoản</label>
+              <label>Tài khoản (email)</label>
               <input
-                type="text"
+                type="email"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Nhập tài khoản"
+                placeholder="Nhập email"
                 required
               />
             </div>
@@ -83,10 +93,12 @@ const LoginPage = () => {
 
             <div className="divider">HOẶC</div>
 
-            <button className="social-btn facebook">
+            <button type="button" className="social-btn facebook">
               Tiếp tục với Facebook
             </button>
-            <button className="social-btn google">Tiếp tục với Google</button>
+            <button type="button" className="social-btn google">
+              Tiếp tục với Google
+            </button>
           </form>
         </div>
       </div>

@@ -1,6 +1,7 @@
 // Sửa ngày 4/11/2025 vì thêm trang Đăng xuất để xóa session người dùng
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "./supabaseClient";
 
 const LogoutPage = () => {
   const navigate = useNavigate();
