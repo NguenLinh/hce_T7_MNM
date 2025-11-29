@@ -30,7 +30,9 @@ const ListProducts_SP_Admin = () => {
 
   return (
     <div className="container">
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{ display: "flex", flexDirection: "column", padding: "20px" }}
+      >
         <div className="table-actions">
           <button
             className="btn green"

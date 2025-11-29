@@ -1,7 +1,7 @@
 import React from "react";
 import "./assets/css/home.css";
 
-import banner from "./assets/images/anhbia.png";
+import banner from "./assets/images/banner.png";
 import img1 from "./assets/images/image1.png";
 import img2 from "./assets/images/image4.png";
 
