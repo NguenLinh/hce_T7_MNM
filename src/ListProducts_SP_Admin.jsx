@@ -50,6 +50,7 @@ const ListProducts_SP_Admin = () => {
           <table className="product-table">
             <thead>
               <tr>
+                <th style={{ width: "60px" }}>STT</th>
                 <th>Hình ảnh</th>
                 <th>Tên</th>
                 <th>Giá</th>
@@ -57,17 +58,26 @@ const ListProducts_SP_Admin = () => {
                 <th>Thao tác</th>
               </tr>
             </thead>
+
             <tbody>
-              {products.map((p) => (
+              {products.map((p, index) => (
                 <tr key={p.id}>
+                  {/* STT */}
+                  <td style={{ textAlign: "center", fontWeight: "bold" }}>
+                    {index + 1}
+                  </td>
+
                   <td style={{ width: "100px" }}>
                     <img src={p.image} alt={p.title} className="thumb" />
                   </td>
+
                   <td style={{ width: "500px" }}>{p.title}</td>
                   <td>{p.price}</td>
+
                   <td>
                     ⭐ {p.rating_rate} ({p.rating_count})
                   </td>
+
                   <td style={{ width: "150px" }}>
                     <button
                       className="btn yellow"

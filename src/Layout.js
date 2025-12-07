@@ -3,18 +3,14 @@ import anhlogo from "./assets/images/logo.png";
 import avatar from "./assets/images/ava.png";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-
-// 🔥 Import giỏ hàng
 import { useCart } from "./CartContext";
 
 const Layout = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  // 🔥 Lấy giỏ hàng
   const { cartItems } = useCart();
 
-  // 🔥 Tính tổng số lượng sản phẩm
   const totalQuantity = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
@@ -33,6 +29,14 @@ const Layout = () => {
     navigate("/login");
   };
 
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = () => {
+    if (!searchValue.trim()) return;
+    navigate(`/search?q=${encodeURIComponent(searchValue)}`);
+    setSearchValue(""); // reset input nếu muốn
+  };
+
   return (
     <>
       {/* Header */}
@@ -46,8 +50,16 @@ const Layout = () => {
             </div>
 
             <div id="divtimkiem" className="search-box">
-              <input type="text" placeholder="Tìm sản phẩm..." />
-              <button>Tìm</button>
+              <input
+                type="text"
+                placeholder="Tìm sản phẩm..."
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleSearch();
+                }}
+              />
+              <button onClick={handleSearch}>Tìm</button>
             </div>
           </div>
 
@@ -62,14 +74,17 @@ const Layout = () => {
               <a href="/trang1" className="menu-item">
                 PRODUCT
               </a>
+              <a href="/Contact" className="menu-item">
+                CONTACT
+              </a>
             </div>
 
-            {/* ⭐⭐ GIỎ HÀNG ĐÃ ĐƯỢC THAY TỪ LAYOUT 1 ⭐⭐ */}
+            {/* GIỎ HÀNG ĐÃ ĐƯỢC THAY TỪ LAYOUT 1*/}
             <div
               className="menubar-right"
               style={{ display: "flex", alignItems: "center", gap: "15px" }}
             >
-              {/* 🔥 GIỎ HÀNG CÓ BADGE SỐ LƯỢNG */}
+              {/* GIỎ HÀNG CÓ BADGE SỐ LƯỢNG */}
               <Link
                 to="/cart"
                 className="menu-item"
@@ -98,7 +113,7 @@ const Layout = () => {
                 )}
               </Link>
 
-              {/* 🔥 LOGIN / LOGOUT */}
+              {/* LOGIN / LOGOUT */}
               {user ? (
                 <>
                   <span className="username" style={{ color: "yellow" }}>

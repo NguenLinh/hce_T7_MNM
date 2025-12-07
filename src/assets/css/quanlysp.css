@@ -116,3 +116,135 @@ input {
   gap: 8px;
   margin-top: 10px;
 }
+
+/*EDIT*/
+
+.edit-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  min-height: 70vh;
+  width: 100%;
+}
+
+.edit-card {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  animation: fadeIn 0.3s ease;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.image-preview-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.image-preview {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #ddd;
+}
+
+.edit-form {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.edit-title {
+  text-align: left;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.edit-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #333;
+}
+
+.edit-form input {
+  margin-top: 6px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #bbb;
+  outline: none;
+  font-size: 15px;
+  transition: border-color 0.2s;
+}
+
+.edit-form input:focus {
+  border-color: #2c3e50;
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: opacity 0.2s;
+}
+
+.btn.cancel {
+  background: #ccc;
+  color: #000;
+}
+
+.btn.save {
+  background: #2c3e50;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+/* === ANIMATION === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-card {
+    flex-direction: column; /* ảnh trên, form dưới */
+    align-items: center;
+  }
+
+  .image-preview-container {
+    margin-bottom: 20px;
+  }
+
+  .edit-form {
+    width: 100%;
+  }
+}

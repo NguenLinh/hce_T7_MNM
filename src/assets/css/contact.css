@@ -1,0 +1,57 @@
+.contact-container {
+  display: flex;
+  width: 90%;
+  padding: 40px;
+  gap: 80px;
+}
+
+.contact-left {
+  width: 50%;
+}
+
+.contact-left h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.contact-form button {
+  width: 150px;
+  padding: 12px;
+  background: black;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.contact-info {
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+.contact-right {
+  width: 50%;
+}
+
+.contact-right iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+  border-radius: 10px;
+}

@@ -34,97 +34,108 @@ const EditProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (isNew) {
       const { error } = await supabase.from("product1").insert([product]);
-      if (error) return alert("Lỗi thêm: " + error.message);
-      alert("✅ Đã thêm sản phẩm!");
+      if (error) return alert("❌ Lỗi thêm: " + error.message);
+      alert("✅ Thêm sản phẩm thành công!");
     } else {
       const { error } = await supabase
         .from("product1")
         .update(product)
         .eq("id", id);
-      if (error) return alert("Lỗi cập nhật: " + error.message);
-      alert("✅ Đã cập nhật sản phẩm!");
+
+      if (error) return alert("❌ Lỗi cập nhật: " + error.message);
+      alert("✅ Cập nhật sản phẩm thành công!");
     }
+
     navigate("/admin/products");
   };
 
   return (
-    <div className="container">
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div>
-          <h2>{isNew ? "Thêm sản phẩm mới" : "Chỉnh sửa sản phẩm"}</h2>
-        </div>
+    <div className="edit-wrapper">
+      <div className="edit-card horizontal-layout">
+        {/* ẢNH BÊN TRÁI */}
+        {product.image && (
+          <div className="image-preview-container">
+            <img src={product.image} alt="preview" className="image-preview" />
+          </div>
+        )}
 
-        <div>
-          <form onSubmit={handleSubmit} className="form">
-            <label>
-              Tên sản phẩm:
-              <input
-                type="text"
-                name="title"
-                value={product.title}
-                onChange={handleChange}
-                required
-              />
-            </label>
+        {/* FORM BÊN PHẢI */}
+        <form onSubmit={handleSubmit} className="edit-form">
+          <h2 className="edit-title">
+            {isNew ? "➕ Thêm sản phẩm mới" : "✏️ Chỉnh sửa sản phẩm"}
+          </h2>
 
-            <label>
-              Giá:
-              <input
-                type="number"
-                name="price"
-                value={product.price}
-                onChange={handleChange}
-                required
-              />
-            </label>
+          <label>
+            Tên sản phẩm
+            <input
+              type="text"
+              name="title"
+              value={product.title}
+              onChange={handleChange}
+              required
+            />
+          </label>
 
-            <label>
-              Hình ảnh (URL):
-              <input
-                type="text"
-                name="image"
-                value={product.image}
-                onChange={handleChange}
-              />
-            </label>
+          <label>
+            Giá ($)
+            <input
+              type="number"
+              name="price"
+              value={product.price}
+              onChange={handleChange}
+              required
+            />
+          </label>
 
-            <label>
-              Đánh giá (0–5):
-              <input
-                type="number"
-                step="0.1"
-                name="rating_rate"
-                value={product.rating_rate}
-                onChange={handleChange}
-              />
-            </label>
+          <label>
+            Link hình ảnh (URL)
+            <input
+              type="text"
+              name="image"
+              value={product.image}
+              onChange={handleChange}
+              placeholder="https://..."
+            />
+          </label>
 
-            <label>
-              Số lượt đánh giá:
-              <input
-                type="number"
-                name="rating_count"
-                value={product.rating_count}
-                onChange={handleChange}
-              />
-            </label>
+          <label>
+            Đánh giá (0 - 5)
+            <input
+              type="number"
+              step="0.1"
+              name="rating_rate"
+              value={product.rating_rate}
+              onChange={handleChange}
+            />
+          </label>
 
-            <div className="actions">
-              <button
-                type="button"
-                className="btn gray"
-                onClick={() => navigate("/admin/products")}
-              >
-                Hủy
-              </button>
-              <button type="submit" className="btn blue">
-                {isNew ? "Thêm" : "Lưu thay đổi"}
-              </button>
-            </div>
-          </form>
-        </div>
+          <label>
+            Lượt đánh giá
+            <input
+              type="number"
+              name="rating_count"
+              value={product.rating_count}
+              onChange={handleChange}
+            />
+          </label>
+
+          <div className="edit-actions">
+            <button
+              type="button"
+              className="btn cancel"
+              onClick={() => navigate("/admin/products")}
+            >
+              ❌ Hủy
+            </button>
+
+            <button type="submit" className="btn save">
+              {isNew ? "💾 Thêm" : "💾 Lưu lại"}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ export default function Home() {
 
       {/* PRODUCT LIST */}
       <div className="product-list">
-        <ListProducts_SP />
+        <ListProducts_SP limit={8} />
       </div>
     </div>
   );

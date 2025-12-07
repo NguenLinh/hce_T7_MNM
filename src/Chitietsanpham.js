@@ -1,50 +1,31 @@
 // src/Chitietsanpham.js
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { products } from "./data/product";
+import { useCart } from "./CartContext"; 
 
 export default function Chitietsanpham() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useCart(); 
 
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // Tìm sản phẩm theo id
+  const product = products.find((item) => item.id === parseInt(id));
 
-  useEffect(() => {
-    // Gọi API để lấy thông tin sản phẩm theo id
-    const fetchProduct = async () => {
-      try {
-        const response = await fetch(
-          `https://68f97a99ef8b2e621e7c302b.mockapi.io/products/${id}`
-        );
-        if (!response.ok) {
-          throw new Error("Không thể tải sản phẩm!");
-        }
-        const data = await response.json();
-        setProduct(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProduct();
-  }, [id]);
-
-  if (loading) {
-    return <p style={{ padding: 20 }}>Đang tải dữ liệu...</p>;
-  }
-
-  if (error || !product) {
+  if (!product) {
     return (
       <div style={{ padding: 20 }}>
-        <h3>Không tìm thấy sản phẩm!</h3>
-        <p>{error}</p>
-        <button onClick={() => navigate("/trang1")}>Quay lại Trang 1</button>
+        <h2>Không tìm thấy sản phẩm!</h2>
+        <button onClick={() => navigate(-1)}>⬅ Quay lại</button>
       </div>
     );
   }
+
+  // Hàm thêm vào giỏ hàng
+  const handleAdd = () => {
+    addToCart(product);
+    alert(`Đã thêm "${product.title}" vào giỏ hàng!`);
+  };
 
   return (
     <div style={{ padding: "20px" }}>
@@ -52,21 +33,61 @@ export default function Chitietsanpham() {
         ⬅ Quay lại
       </button>
 
-      <div style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
+      <div style={{ display: "flex", gap: "30px" }}>
         <img
           src={product.image}
           alt={product.title}
-          style={{ width: "250px", height: "250px", objectFit: "contain" }}
+          style={{
+            width: "280px",
+            height: "280px",
+            objectFit: "contain",
+            borderRadius: "10px",
+            background: "#f9f9f9",
+            padding: "10px",
+          }}
         />
-        <div>
+
+        <div style={{ maxWidth: "500px" }}>
           <h2>{product.title}</h2>
-          <p>
-            <strong>Giá:</strong> ${product.price}
+
+          <p style={{ fontSize: "22px", fontWeight: "bold", color: "#e63946" }}>
+            ${product.price}
           </p>
+
           <p>
             <strong>Loại:</strong> {product.category}
           </p>
-          <p style={{ maxWidth: "400px" }}>{product.description}</p>
+
+          <p style={{ marginTop: "10px" }}>{product.description}</p>
+
+          <p style={{ marginTop: "10px", color: "#555" }}>
+            {product.rating?.rate} | ({product.rating?.count} đánh giá)
+          </p>
+
+          {/* Nút thêm vào giỏ */}
+          <button
+            onClick={handleAdd}
+            style={{
+              marginTop: "20px",
+              padding: "12px 18px",
+              backgroundColor: "#2c3e50",
+              color: "white",
+              fontSize: "16px",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontWeight: "600",
+              transition: "background 0.2s",
+            }}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.backgroundColor = "#1a252f")
+            }
+            onMouseOut={(e) =>
+              (e.currentTarget.style.backgroundColor = "#2c3e50")
+            }
+          >
+            🛒 Thêm vào giỏ hàng
+          </button>
         </div>
       </div>
     </div>
